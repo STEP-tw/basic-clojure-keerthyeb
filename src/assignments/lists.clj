@@ -8,7 +8,10 @@
    :use          '[loop recur]
    :dont-use     '[map]
    :implemented? false}
-  [f & colls])
+  [f colls]
+  (loop [coll colls result []]
+    (if (empty? coll) result
+                      (recur (rest coll) (conj result (f (first coll)))))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
@@ -17,8 +20,14 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]
-   :implemented? false}
-  [pred coll])
+   :implemented? true}
+  [pred coll]
+  (loop [coll coll result []]
+    (if (empty? coll) result
+                      (let [x (first coll)]
+                        (if (pred x)
+                          (recur (rest coll) (conj result x))
+                          (recur (rest coll) result))))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -37,8 +46,10 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[count]
-   :implemented? false}
-  ([coll]))
+   :implemented? true}
+  ([coll] (loop [xs coll count 0]
+            (if (empty? xs) count
+                            (recur (rest xs) (inc count))))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
@@ -55,8 +66,11 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]
-   :implemented? false}
-  ([pred coll]))
+   :implemented? true}
+  ([pred coll]
+   (loop [xs coll result true]
+     (if (empty? xs) result
+                     (recur (rest xs) (and result (pred (first xs))))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
@@ -67,7 +81,12 @@
    :use          '[loop recur or]
    :dont-use     '[some]
    :implemented? false}
-  ([pred coll]))
+  ([pred coll]
+   (loop [xs coll result nil]
+     (if (empty? xs) result
+                     (if (pred (first xs))
+                       (recur (rest xs) true)
+                       (recur (rest xs) (or result nil)))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
@@ -75,7 +94,8 @@
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
    :implemented? false}
-  [coll])
+  [coll]
+  (every? (partial apply <=) (partition 2 1 coll)))
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
@@ -104,7 +124,8 @@
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
    :implemented? false}
-  [coll])
+  [coll]
+  (map + coll (rest coll)))
 
 (defn max-three-digit-sequence
   "Given a collection of numbers, find a three digit sequence that
@@ -135,7 +156,8 @@
    :use          '[remove set]
    :dont-use     '[loop recur if]
    :implemented? false}
-  [coll1 coll2])
+  [coll1 coll2]
+  (remove (into #{} coll1) (into #{} coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second
@@ -191,8 +213,10 @@
   [4 5 6] => [16 16 16]"
   {:level        :easy
    :use          '[map constantly let]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (let [sqr-of-the-first (* (first coll) (first coll))]
+    (map (constantly sqr-of-the-first) coll)))
 
 (defn russian-dolls
   "Given a collection and a number, wrap each element in a nested vector
