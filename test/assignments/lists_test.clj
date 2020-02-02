@@ -72,3 +72,7 @@
     (is (true? (palindrome? [1 2 3 2 1]))))
   (testing "not palindrome list"
     (is (false? (palindrome? [1 2 3 1])))))
+
+(deftest muted-thirds-test
+  (testing "muted-thirds"
+    (is (= [1 2 0 4 15 0 7] (muted-thirds [1 2 8 4 15 2 7])))))
