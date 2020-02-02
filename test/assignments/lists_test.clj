@@ -2,10 +2,10 @@
   (:require [clojure.test :refer :all]
             [assignments.lists :refer :all]))
 
-;(deftest lists
-;  (testing "map"
-;    (testing "identity with single coll"
-;      (is (= [1 2 3] (map' identity [1 2 3]))))))
+(deftest lists
+  (testing "map"
+    (testing "identity with single coll"
+      (is (= [1 2 3] (map' identity [1 2 3]))))))
 
 (deftest filter-test
   (testing "filtering even numbers"
@@ -56,3 +56,9 @@
 (deftest difference-test
   (testing "difference"
     (is (= '(3) (difference [1 2] [1 2 3])))))
+
+(deftest index-of-test
+  (testing "valid index"
+    (is (= 1 (index-of [1 2 3] 2))))
+  (testing "invalid index"
+    (is (= -1 (index-of [1 2 3 1] 4)))))
