@@ -62,3 +62,13 @@
     (is (= 1 (index-of [1 2 3] 2))))
   (testing "invalid index"
     (is (= -1 (index-of [1 2 3 1] 4)))))
+
+(deftest palindrome
+  (testing "empty list"
+    (is (true? (palindrome? []))))
+  (testing "one element list"
+    (is (true? (palindrome? [1]))))
+  (testing "palindrome list"
+    (is (true? (palindrome? [1 2 3 2 1]))))
+  (testing "not palindrome list"
+    (is (false? (palindrome? [1 2 3 1])))))
