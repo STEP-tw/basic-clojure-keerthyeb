@@ -258,9 +258,10 @@
    :implemented? false}
   [coll]
   (loop [coll coll]
-    (if (empty? coll) true
-                      (if (not= (last coll) (first coll)) false
-                                                          (recur (rest (butlast coll)))))))
+    (cond
+      (empty? coll) true
+      (not= (last coll) (first coll)) false
+      :else (recur (rest (butlast coll))))))
 
 (defn index-of
   "index-of takes a sequence and an element and finds the index
@@ -272,9 +273,10 @@
    :implemented? false}
   [coll n]
   (loop [coll coll count -1]
-    (if (empty? coll) -1
-                      (if (= n (first coll)) (inc count)
-                                             (recur (rest coll) (inc count))))))
+    (cond
+      (empty? coll) -1
+      (= n (first coll)) (inc count)
+      :else (recur (rest coll) (inc count)))))
 
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
