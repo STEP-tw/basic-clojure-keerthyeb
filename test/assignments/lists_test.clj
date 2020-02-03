@@ -76,3 +76,13 @@
 (deftest muted-thirds-test
   (testing "muted-thirds"
     (is (= [1 2 0 4 15 0 7] (muted-thirds [1 2 8 4 15 2 7])))))
+
+(deftest third-or-fifth-test
+  (testing "third-or-fifth"
+    (is (= [1 4 2 7] (third-or-fifth [1 2 8 4 15 2 7])))))
+
+(deftest reduce-test
+  (testing "sum of an array"
+    (is (= 10 (reduce' + [1 2 3 4]))))
+  (testing "converting array into string"
+    (is (= "1234" (reduce' str [1 2 3 4])))))

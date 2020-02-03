@@ -42,13 +42,13 @@
 
 (deftest five-point-someone-test
   (testing "for value 5 for y"
-    (is (= ":chetan-bhagat" (five-point-someone 4 5))))
+    (is (= :chetan-bhagat (five-point-someone 4 5))))
   (testing "for value 5 for x"
-    (is (= ":satan-bhagat" (five-point-someone 5 0))))
+    (is (= :satan-bhagat (five-point-someone 5 0))))
   (testing "for x is greater than y"
-    (is (= ":greece" (five-point-someone 6 3))))
+    (is (= :greece (five-point-someone 6 3))))
   (testing "returns universe"
-    (is (= ":universe" (five-point-someone 4 6)))))
+    (is (= :universe (five-point-someone 4 6)))))
 
 (deftest repeat-and-truncate-test
   (testing "repeat and truncate"
@@ -80,4 +80,6 @@
 
 (deftest zero-separated-palindrome-test
   (testing "zero-separated-palindrome"
-    (is (= '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3])))))
+    (is (= '(4 3 2 0 2 3 4) (zero-separated-palindrome [1 2 3]))))
+  (testing "zero-separated-palindrome with list which contain character"
+    (is (= '(:a 4 3 2 0 2 3 4 :a) (zero-separated-palindrome [1 2 3 :a])))))

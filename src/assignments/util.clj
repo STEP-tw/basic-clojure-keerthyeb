@@ -15,3 +15,5 @@
     (list* 'do forms-with-println)))
 
 (defn increment [n] (if (instance? Number n) (inc n) n))
+
+(defn is-divisible [dividend divisor] (zero? (mod dividend divisor)))

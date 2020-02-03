@@ -1,4 +1,6 @@
-(ns assignments.lists)
+(ns assignments.lists
+  (:require
+    [assignments.util :refer :all]))
 
 (defn map'
   "Implement a non-lazy version of map that accepts a
@@ -36,10 +38,12 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[reduce]
-   :implemented? false}
-  ([f coll])
-  ([f init coll]))
-
+   :implemented? true}
+  ([f coll] (reduce' f (first coll) (rest coll)))
+  ([f init coll] (loop [coll coll result init]
+                   (if (empty? coll) result
+                                     (let [x (first coll)]
+                                       (recur (rest coll) (f result x)))))))
 (defn count'
   "Implement your own version of count that counts the
   number of elements in a given sequence"
@@ -203,8 +207,9 @@
   elements whose index is either divisible by three or five"
   {:level        :easy
    :use          '[keep-indexed when :optionally map-indexed filter]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (keep-indexed #(if (or (is-divisible %1 3) (is-divisible %1 5)) %2) coll))
 
 (defn sqr-of-the-first
   "Given a collection, return a new collection that contains the
@@ -273,7 +278,8 @@
    :dont-use     '[.indexOf memfn]
    :implemented? true}
   [coll n]
-  (loop [coll coll count -1]
+  (loop [coll coll
+         count -1]
     (cond
       (empty? coll) -1
       (= n (first coll)) (inc count)

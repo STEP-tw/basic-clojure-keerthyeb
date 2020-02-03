@@ -56,10 +56,10 @@
    :implemented? true}
   [x y]
   (cond
-    (= y 5) ":chetan-bhagat"
-    (= x 5) ":satan-bhagat"
-    (> x y) ":greece"
-    :else ":universe"))
+    (= y 5) :chetan-bhagat
+    (= x 5) :satan-bhagat
+    (> x y) :greece
+    :else :universe))
 
 (defn conditions-apply
   "Given a collection of any length, returns:
