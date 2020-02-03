@@ -13,3 +13,5 @@
 (defmacro print-and-do [& forms]
   (let [forms-with-println (mapcat insert-println-if-implemented forms)]
     (list* 'do forms-with-println)))
+
+(defn increment [n] (if (instance? Number n) (inc n) n))

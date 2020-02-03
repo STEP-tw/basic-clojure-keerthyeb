@@ -1,4 +1,6 @@
-(ns assignments.conditions)
+(ns assignments.conditions
+  (:require
+    [assignments.util :refer :all]))
 
 (defn safe-divide
   "Returns the result of x/y unless y is 0. Returns nil when y is 0"
@@ -132,5 +134,5 @@
    :use          '[as-> reverse]
    :implemented? true}
   [coll]
-  (as-> (map #(if (instance? Number %) (inc %) %) coll) coll
+  (as-> (map increment coll) coll
         (concat (reverse coll) (cons 0 coll))))
