@@ -82,8 +82,8 @@
   [coll rep? truncate? n]
   (cond->> coll
            rep? (repeat)
-           true (apply concat)
-           truncate? (take n)))
+           truncate? (flatten)
+           true (take n)))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
@@ -132,7 +132,5 @@
    :use          '[as-> reverse]
    :implemented? true}
   [coll]
-  (as-> coll collection
-        (map inc collection)
-        (conj collection 0 (reverse collection))
-        (flatten collection)))
+  (as-> (map #(if (instance? Number %) (inc %) %) coll) coll
+        (concat (reverse coll) (cons 0 coll))))

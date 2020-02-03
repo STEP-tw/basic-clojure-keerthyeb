@@ -7,7 +7,7 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]
-   :implemented? false}
+   :implemented? true}
   [f colls]
   (loop [coll colls result []]
     (if (empty? coll) result
@@ -80,7 +80,7 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]
-   :implemented? false}
+   :implemented? true}
   ([pred coll]
    (loop [xs coll result nil]
      (if (empty? xs) result
@@ -93,7 +93,7 @@
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (every? (partial apply <=) (partition 2 1 coll)))
 
@@ -123,7 +123,7 @@
   {:level        :medium
    :use          '[map + rest]
    :dont-use     '[loop recur partition]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (map + coll (rest coll)))
 
@@ -155,7 +155,7 @@
   {:level        :easy
    :use          '[remove set]
    :dont-use     '[loop recur if]
-   :implemented? false}
+   :implemented? true}
   [coll1 coll2]
   (remove (into #{} coll1) (into #{} coll2)))
 
@@ -247,7 +247,7 @@
   {:level        :easy
    :use          '[map cycle]
    :dont-use     '[loop recur map-indexed take take-nth]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (map * (cycle [1 1 0]) coll))
 
@@ -256,7 +256,7 @@
   {:level        :easy
    :use          '[empty? loop recur butlast rest]
    :dont-use     '[reverse]
-   :implemented? false}
+   :implemented? true}
   [coll]
   (loop [coll coll]
     (cond
@@ -271,7 +271,7 @@
   {:level        :easy
    :use          '[loop recur rest]
    :dont-use     '[.indexOf memfn]
-   :implemented? false}
+   :implemented? true}
   [coll n]
   (loop [coll coll count -1]
     (cond
