@@ -86,3 +86,9 @@
     (is (= 10 (reduce' + [1 2 3 4]))))
   (testing "converting array into string"
     (is (= "1234" (reduce' str [1 2 3 4])))))
+
+(deftest reverse-test
+  (testing "reverse of an array"
+    (is (= [7 2 15 4 8 2 1] (reverse' [1 2 8 4 15 2 7]))))
+  (testing "reverse of an empty array"
+    (is (= [] (reverse' [])))))

@@ -16,7 +16,8 @@
    :use          '[if-not zero?]
    :implemented? true}
   [x y]
-  (if-not (zero? y) (quot x y) :infinite))
+  (if-not (zero? y) (quot x y)
+                    :infinite))
 
 (defn harishchandra
   "Only returns truthy values as themselves.
