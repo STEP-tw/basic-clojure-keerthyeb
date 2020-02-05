@@ -100,3 +100,7 @@
 (deftest dedupe'-test
   (testing "dedupe'"
     (is (= [1 2 3 4 5 1] (dedupe' [1 1 1 2 3 3 4 4 5 1])))))
+
+(deftest max-three-digit-sequence-test
+  (testing "max 3 digit sequence"
+    (is (= [2 -1 2] (max-three-digit-sequence [1 2 -1 2 0])))))
