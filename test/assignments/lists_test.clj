@@ -104,3 +104,7 @@
 (deftest max-three-digit-sequence-test
   (testing "max 3 digit sequence"
     (is (= [2 -1 2] (max-three-digit-sequence [1 2 -1 2 0])))))
+
+(deftest transpose-test
+  (testing "transpose"
+    (is (= [[1 1] [2 2] [3 3]] (transpose [[1 2 3] [1 2 3]])))))
