@@ -96,3 +96,7 @@
 (deftest distinct'-test
   (testing "distinct"
     (is (= [1 4 3 2] (distinct' [1 2 3 4 3 2])))))
+
+(deftest dedupe'-test
+  (testing "dedupe'"
+    (is (= [1 2 3 4 5 1] (dedupe' [1 1 1 2 3 3 4 4 5 1])))))

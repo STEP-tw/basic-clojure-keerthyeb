@@ -17,3 +17,8 @@
 (defn increment [n] (if (instance? Number n) (inc n) n))
 
 (defn is-divisible [dividend divisor] (zero? (mod dividend divisor)))
+
+(defn deduplicate [coll n] (cond
+                          (empty? coll) (conj [] n)
+                          (not= n (last coll)) (conj coll n)
+                          :else coll))
