@@ -45,8 +45,8 @@
   ([f init coll] (loop [coll coll
                         result init]
                    (if (empty? coll) result
-                                     (let [x (first coll)]
-                                       (recur (rest coll) (f result x)))))))
+                                     (recur (rest coll) (f result (first coll)))))))
+
 (defn count'
   "Implement your own version of count that counts the
   number of elements in a given sequence"
@@ -91,13 +91,13 @@
    :use          '[loop recur or]
    :dont-use     '[some]
    :implemented? true}
-  ([pred coll]
-   (loop [xs coll
+  ([pred collection]
+   (loop [coll collection
           result nil]
-     (if (empty? xs) result
-                     (if (pred (first xs))
-                       (recur (rest xs) true)
-                       (recur (rest xs) (or result nil)))))))
+     (cond
+       (empty? coll) result
+       (pred (first coll)) (recur (rest coll) true)
+       :else (recur (rest coll) (or result nil))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
@@ -115,8 +115,9 @@
   {:level        :medium
    :use          '[lazy-seq set conj let :optionally letfn]
    :dont-use     '[loop recur distinct]
-   :implemented? false}
-  [coll])
+   :implemented? true}
+  [coll]
+  (lazy-seq (set coll)))
 
 (defn dedupe'
   "Implement your own lazy sequence version of dedupe which returns
@@ -168,7 +169,7 @@
    :dont-use     '[loop recur if]
    :implemented? true}
   [coll1 coll2]
-  (remove (into #{} coll1) (into #{} coll2)))
+  (remove (set coll1) (set coll2)))
 
 (defn union
   "Given two collections, returns a new collection with elements from the second

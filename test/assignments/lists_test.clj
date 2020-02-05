@@ -92,3 +92,7 @@
     (is (= [7 2 15 4 8 2 1] (reverse' [1 2 8 4 15 2 7]))))
   (testing "reverse of an empty array"
     (is (= [] (reverse' [])))))
+
+(deftest distinct'-test
+  (testing "distinct"
+    (is (= [1 4 3 2] (distinct' [1 2 3 4 3 2])))))
