@@ -11,7 +11,8 @@
    :dont-use     '[map]
    :implemented? true}
   [f colls]
-  (loop [coll colls result []]
+  (loop [coll colls
+         result []]
     (if (empty? coll) result
                       (recur (rest coll) (conj result (f (first coll)))))))
 
@@ -24,7 +25,8 @@
    :dont-use     '[filter]
    :implemented? true}
   [pred coll]
-  (loop [coll coll result []]
+  (loop [coll coll
+         result []]
     (if (empty? coll) result
                       (let [x (first coll)]
                         (if (pred x)
@@ -40,7 +42,8 @@
    :dont-use     '[reduce]
    :implemented? true}
   ([f coll] (reduce' f (first coll) (rest coll)))
-  ([f init coll] (loop [coll coll result init]
+  ([f init coll] (loop [coll coll
+                        result init]
                    (if (empty? coll) result
                                      (let [x (first coll)]
                                        (recur (rest coll) (f result x)))))))
@@ -51,7 +54,8 @@
    :use          '[loop recur]
    :dont-use     '[count]
    :implemented? true}
-  ([coll] (loop [xs coll count 0]
+  ([coll] (loop [xs coll
+                 count 0]
             (if (empty? xs) count
                             (recur (rest xs) (inc count))))))
 
@@ -61,7 +65,7 @@
   {:level        :easy
    :use          '[reduce conj seqable? when]
    :dont-use     '[reverse]
-   :implemented? false}
+   :implemented? true}
   ([coll]
    (reduce conj '() coll)))
 
@@ -73,7 +77,8 @@
    :dont-use     '[every?]
    :implemented? true}
   ([pred coll]
-   (loop [xs coll result true]
+   (loop [xs coll
+          result true]
      (if (empty? xs) result
                      (recur (rest xs) (and result (pred (first xs))))))))
 
@@ -87,7 +92,8 @@
    :dont-use     '[some]
    :implemented? true}
   ([pred coll]
-   (loop [xs coll result nil]
+   (loop [xs coll
+          result nil]
      (if (empty? xs) result
                      (if (pred (first xs))
                        (recur (rest xs) true)
