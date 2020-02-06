@@ -112,3 +112,7 @@
 (deftest union-test
   (testing "non-empty collection"
     (is (= [1 2 3 4 5 6 7 8] (union [1 2 3 4] [5 6 1 2 7 8])))))
+
+(testing "cross-product"
+  (testing "return cross product until both elements are same"
+    (is (= [[1 4] [1 3] [1 5] [2 4] [2 3] [2 5] [3 4]] (cross-product [1 2 3] [4 3 5])))))
