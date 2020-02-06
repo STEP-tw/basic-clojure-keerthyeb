@@ -19,6 +19,6 @@
 (defn is-divisible [dividend divisor] (zero? (mod dividend divisor)))
 
 (defn deduplicate [coll n] (cond
-                             (empty? coll) (conj [] n)
+                             (empty? coll) (vector n)
                              (not= n (last coll)) (conj coll n)
                              :else coll))

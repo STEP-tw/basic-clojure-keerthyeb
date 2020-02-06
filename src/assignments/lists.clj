@@ -304,8 +304,19 @@
       (= n (first coll)) (inc count)
       :else (recur (rest coll) (inc count)))))
 
+(defn is-validate-row [grid] (every? (partial apply distinct?) grid))
+
+(defn get-nxn-grid [grid n] (->> grid
+                                 (map (partial partition n))
+                                 (transpose)
+                                 (flatten)
+                                 (partition (* n n))))
+
 (defn validate-sudoku-grid
   "Given a 9 by 9 sudoku grid, validate it."
   {:level        :hard
-   :implemented? false}
-  [grid])
+   :implemented? true}
+  [grid]
+  (every? is-validate-row [grid
+                           (transpose grid)
+                           (get-nxn-grid grid 3)]))
