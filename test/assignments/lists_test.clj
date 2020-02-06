@@ -108,3 +108,7 @@
 (deftest transpose-test
   (testing "transpose"
     (is (= [[1 1] [2 2] [3 3]] (transpose [[1 2 3] [1 2 3]])))))
+
+(deftest union-test
+  (testing "non-empty collection"
+    (is (= [1 2 3 4 5 6 7 8] (union [1 2 3 4] [5 6 1 2 7 8])))))
